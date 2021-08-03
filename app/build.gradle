@@ -1,23 +1,92 @@
-apply plugin: 'com.android.application'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+apply plugin: "androidx.navigation.safeargs"
 
 android {
-    compileSdkVersion 29
-    defaultConfig {
-        applicationId "xunison.com.testapp"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    compileSdkVersion globalConfig.compileSdkVersion
+
+    allprojects {
+        repositories {
+            maven { url 'https://jitpack.io' }
         }
+    }
+
+    defaultConfig {
+        applicationId appConfig.applicationId
+        minSdkVersion globalConfig.minSdkVersion
+        targetSdkVersion globalConfig.targetSdkVersion
+        versionCode appConfig.versionCode
+        versionName appConfig.versionName
+    }
+
+    signingConfigs {
+        release {
+            keyAlias appConfig.keyAlias
+            keyPassword appConfig.keyPassword
+            storeFile appConfig.storeFile
+            storePassword appConfig.storePassword
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        staging {
+        }
+
+        production {
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 }
 
 dependencies {
+
+    // Domain and Data layers
+    implementation globalDependencies.layerDomain
+    implementation globalDependencies.layerData
+
+
+    // DI
+    api globalDependencies.dagger
+    kapt globalDependencies.daggerCompiler
+    kaptTest globalDependencies.daggerCompiler
+    kaptAndroidTest globalDependencies.daggerCompiler
+
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -29,6 +98,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 
-    testImplementation 'junit:junit:4.13.2'
 }
 

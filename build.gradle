@@ -1,18 +1,23 @@
 buildscript {
-    repositories {
-        jcenter()
-        google()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+    apply from: 'dependencies.gradle'
+    apply from: 'config.gradle'
 
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath globalDependencies.androidGradlePlugin
+        classpath globalDependencies.kotlinGradlePlugin
+        classpath globalDependencies.navigationSafeArgsPlugin
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
         google()
+        mavenCentral()
     }
 }
 

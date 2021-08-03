@@ -1,0 +1,107 @@
+/**
+ * This file defines all project dependencies
+ */
+
+def libraryVersions = [
+
+        androidGradlePluginVersion   : "4.2.2",
+        kotlinGradlePluginVersion    : "1.5.10",
+
+        coreKtxVersion               : "1.5.0",
+        coroutineVersion             : "1.5.0",
+        constraintLayoutVersion      : "2.0.4",
+        recyclerViewVersion          : "1.1.0",
+        lifecycleViewModelKtxVersion : "2.3.1",
+        materialVersion              : "1.3.0",
+        cardViewVersion              : "1.0.0",
+        materialDialogs              : "3.3.0",
+        progressButton               : "2.1.0",
+        viewBindingPropertyDelegate  : "1.4.6",
+
+        architectureComponentsVersion: "2.1.0",
+        navigationVersion            : "2.3.5",
+        daggerVersion                : "2.37",
+        ktxActivityVersion           : "1.2.3",
+        ktxFragmentVersion           : "1.3.5",
+
+        retrofitVersion              : "2.9.0",
+        okHttpVersion                : "4.9.1",
+        gsonVersion                  : "2.8.7",
+
+        securityCryptoVersion        : "1.1.0-alpha03",
+        javaxInjectVersion           : "1"
+]
+
+ext {
+
+    /**
+     * Common dependencies for all project
+     */
+
+    globalDependencies = [
+
+            layerData               : project(":data"),
+            layerDomain             : project(":domain"),
+
+            coroutinesCore          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libraryVersions.coroutineVersion}",
+            coroutinesAndroid       : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libraryVersions.coroutineVersion}",
+
+            androidGradlePlugin     : "com.android.tools.build:gradle:${libraryVersions.androidGradlePluginVersion}",
+            kotlinGradlePlugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${libraryVersions.kotlinGradlePluginVersion}",
+            kotlinStdlibJdk         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${libraryVersions.kotlinGradlePluginVersion}",
+            kotlinSerialization     : "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1",
+            lifecycleLiveDataKtx    : "androidx.lifecycle:lifecycle-livedata-ktx:${libraryVersions.lifecycleViewModelKtxVersion}",
+            navigationSafeArgsPlugin: "androidx.navigation:navigation-safe-args-gradle-plugin:${libraryVersions.navigationVersion}",
+            coreKtx                 : "androidx.core:core-ktx:${libraryVersions.coreKtxVersion}",
+
+            gson                    : "com.google.code.gson:gson:${libraryVersions.gsonVersion}",
+
+            dagger                  : "com.google.dagger:dagger:${libraryVersions.daggerVersion}",
+            daggerCompiler          : "com.google.dagger:dagger-compiler:${libraryVersions.daggerVersion}"
+    ]
+
+    /**
+     * Dependencies for app module
+     */
+
+    appDependencies = [
+
+            constraintLayout           : "androidx.constraintlayout:constraintlayout:${libraryVersions.constraintLayoutVersion}",
+            lifecycleViewmodelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:${libraryVersions.lifecycleViewModelKtxVersion}",
+            cardView                   : "androidx.cardview:cardview:${libraryVersions.cardViewVersion}",
+            navigationFragmentKtx      : "androidx.navigation:navigation-fragment-ktx:${libraryVersions.navigationVersion}",
+            navigationUiKtx            : "androidx.navigation:navigation-ui-ktx:${libraryVersions.navigationVersion}",
+            activityKtx                : "androidx.activity:activity-ktx:${libraryVersions.ktxActivityVersion}",
+            fragmentKtx                : "androidx.fragment:fragment-ktx:${libraryVersions.ktxFragmentVersion}",
+            material                   : "com.google.android.material:material:${libraryVersions.materialVersion}",
+            progressButton             : "com.github.razir.progressbutton:progressbutton:${libraryVersions.progressButton}",
+
+            materialDialogsCore        : "com.afollestad.material-dialogs:core:${libraryVersions.materialDialogs}",
+            materialDialogsLifecycle   : "com.afollestad.material-dialogs:lifecycle:${libraryVersions.materialDialogs}",
+            viewBindingPropertyDelegate: "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${libraryVersions.viewBindingPropertyDelegate}"
+    ]
+
+    /**
+     * Dependencies for data module
+     */
+
+    dataDependencies = [
+
+            retrofit                : "com.squareup.retrofit2:retrofit:${libraryVersions.retrofitVersion}",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:${libraryVersions.retrofitVersion}",
+            okHttp                  : "com.squareup.okhttp3:okhttp:${libraryVersions.okHttpVersion}",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${libraryVersions.okHttpVersion}",
+
+            securityCrypto          : "androidx.security:security-crypto:${libraryVersions.securityCryptoVersion}"
+    ]
+
+    /**
+     * Dependencies for domain module
+     */
+
+    domainDependencies = [
+
+            coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libraryVersions.coroutineVersion}",
+            coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libraryVersions.coroutineVersion}"
+    ]
+}

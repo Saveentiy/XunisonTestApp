@@ -16,8 +16,7 @@
         </activity>
 
         <service
-            android:name="xunison.com.testapp.api.WebService"
-            android:process=":background" />
+            android:name="xunison.com.testapp.api.WebService" />
     </application>
 
 </manifest>

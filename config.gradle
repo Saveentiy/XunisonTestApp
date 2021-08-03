@@ -1,0 +1,62 @@
+/**
+ * This file defines configuration for all project
+ */
+
+ext {
+
+    /**
+     * Common configuration for all project
+     */
+
+    globalConfig = [
+            compileSdkVersion: 30,
+            minSdkVersion    : 21,
+            targetSdkVersion : 30
+    ]
+
+    /**
+     * Configuration for app module
+     */
+
+    def appVersionMajor = 1
+    def appVersionMinor = 0
+    def appVersionPatch = 0
+
+    appConfig = [
+
+            applicationId: "xunison.com.testapp",
+
+            versionCode  : generateVersionCode(appVersionMajor, appVersionMinor, appVersionPatch),
+            versionName  : generateVersionName(appVersionMajor, appVersionMinor, appVersionPatch)
+
+    ]
+
+    /**
+     * Configuration for data module
+     */
+
+    dataConfig = [
+            devUrl              : "",
+            prodUrl             : ""
+    ]
+
+    /**
+     * Configuration for domain module
+     */
+
+    domainConfig = [
+
+    ]
+}
+
+/**
+ * Versions calculations
+ */
+
+static Integer generateVersionCode(versionMajor, versionMinor, versionPatch) {
+    return versionMajor * 1000 + versionMinor * 100 + versionPatch
+}
+
+static String generateVersionName(versionMajor, versionMinor, versionPatch) {
+    return "${versionMajor}.${versionMinor}.${versionPatch}"
+}
